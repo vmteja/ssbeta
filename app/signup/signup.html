@@ -1,0 +1,154 @@
+<html ng-app="ShieldSure">
+<head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+    .container-fluid{
+      background-color:#F4511E;
+      }
+      .title{
+        font-family: 'Lobster', cursive;
+        font-weight: 400;
+        font-size: 50px;
+      }
+    .asteriskField{
+      color: #ffffff;
+      }
+    .center{
+      text-align: center;
+      }
+    form{ 
+      margin-top: 50px;
+      color:#ffffff;
+      }
+    .btn-primary.raised {
+      box-shadow: 0 3px 0 0 #C34018;
+      } 
+    .btn-primary.raised:active, .btn-primary.raised.active {
+      background: #F6734A;
+      box-shadow: none;
+      margin-bottom: -3px;
+      margin-top: 3px;
+      }
+    .btn {
+      padding: 14px 24px;
+      border: 0 none;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      }  
+    .btn:focus, .btn:active:focus, .btn.active:focus {
+      outline: 0 none;
+      }
+    .btn-primary {
+      background: #DB481B;
+      color: #ffffff;
+      }
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+      background: #F6734A;
+      }    
+      label{
+        font-weight: 200;
+        font-size: 18px ;
+      }
+    .form-control{
+      border:none;
+      background-color: #F4511E;
+      border-bottom: 3px solid #D69292;
+      color:#ffffff;
+    }
+    .form-control::-webkit-input-placeholder { color: #D69292; }
+    .form-control:-moz-placeholder { color: #D69292; }
+    .form-control::-moz-placeholder { color: #D69292; }
+    .form-control:-ms-input-placeholder { color: #D69292; }
+    input{
+      border-radius: 0px !important;
+      box-shadow: none !important;
+    }
+    input:focus{
+      border-bottom: 3px solid #ffffff !important;
+    }
+
+    
+
+    </style>
+</head>
+<body ng-app="validationApp" ng-controller="SignupController">
+    <script src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+  <script src="app/signup/signup-controller.js"></script>
+
+    <div class="container-fluid">
+     <div class="row">
+       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">  
+           <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+
+         
+         <p class="center title">Shieldsure</p>
+         <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+           <label for="email">Email: <span class="asteriskField">*</span></label>
+             <input type="email" name="email" class="form-control" ng-model="newUser.email" placeholder="E.g. example@example.com" required>
+        <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+      </div>
+           
+        
+
+         <div class="form-group">
+           <label for="password">Password: <span class="asteriskField">*</span></label>
+             <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine}">
+      
+      <input type="password" name="password" class="form-control" ng-model="newUser.password" ng-minlength="8" ng-maxlength="16" placeholder="Enter a password" required> 
+            <p ng-show="userForm.password.$error.minlength" class="help-block">Password is too short.</p>
+            <p ng-show="userForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+      </div>
+        
+         </div><!--End of form group-->
+
+         <div class="form-group">
+           <label for="firstname">First Name: <span class="asteriskField">*</span></label>
+           
+              <input type="text" ng-model="newUser.firstname" class="form-control" ng-maxlength="20" placeholder="Chuck" required>
+         </div><!--End of form group-->
+
+         <div class="form-group">
+           <label for="lastname">Last Name: <span class="asteriskField">*</span></label>
+             <input type="text" ng-model="newUser.lastname" class="form-control" ng-maxlength="20" placeholder="Norris" required>
+         </div><!--End of form group-->
+
+         <div class="form-group">
+           <label for="mobnumber">Contact No: <span class="asteriskField">*</span></label>
+             <input type="number" name="mobnumber" class="form-control" ng-model="newUser.mobnumber" class="form-control" ng-minlength="10" ng-maxlength="10" placeholder="9876543210" required>
+            <p ng-show="userForm.mobnumber.$error.minlength" class="help-block">Mobile Number is too short.</p>
+            <p ng-show="userForm.mobnumber.$error.maxlength" class="help-block">Mobile Number is too long.</p>
+           
+         </div><!--End of form group-->
+
+         <div class="form-group">
+           <label for="address">Address: <span class="asteriskField">*</span></label>
+           <input type="text" ng-model="newUser.homeaddress" class="form-control" placeholder="221B, Baker Street" required>
+         </div><!--End of form group-->
+            <p class="center"><button class="btn btn-primary btn-lg  raised" ng-disabled="!userForm.$valid" type="submit">Submit</button></p>
+             
+         </form>
+         </div>
+        </div><!--End of col-md-6-->
+      </div><!--End of row-->
+    </div><!--End of container-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+       <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $('.container-fluid').css('min-height',$(window).height());
+
+    </script>
+</body>
+</html>

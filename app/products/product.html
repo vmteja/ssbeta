@@ -1,0 +1,191 @@
+
+<html ng-app="ShieldSure">
+<head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    .container-fluid{
+      background-color:#F4511E;
+      }
+    .title{
+      font-family: 'Lobster', cursive;
+      font-weight: 400;
+      font-size: 50px;
+      }
+    .center{
+      text-align: center;
+      }    
+    .asteriskField{
+      color: #ffffff;
+      }
+     form{ 
+      margin-top: 50px;
+      color:#ffffff;
+      }
+     label{
+      font-weight: 200;
+      font-size: 18px ;
+      }
+    .btn-primary.raised {
+      box-shadow: 0 3px 0 0 #C34018;
+      } 
+    .btn-primary.raised:active, .btn-primary.raised.active {
+      background: #F6734A;
+      box-shadow: none;
+      margin-bottom: -3px;
+      margin-top: 3px;
+      }
+    .btn {
+      padding: 14px 24px 5px 24px;
+      border: 0 none;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      }
+    .btn:focus, .btn:active:focus, .btn.active:focus {
+      outline: 0 none;
+      }
+    .btn-primary {
+      background: #DB481B;
+      color: #ffffff;
+      }
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+      background: #F6734A;
+      }
+    .form-control{
+      border:none;
+      background-color: #F4511E;
+      border-bottom: 3px solid #D69292;
+      color:#ffffff;
+    }
+    .form-control::-webkit-input-placeholder { color: #D69292; }
+    .form-control:-moz-placeholder { color: #D69292; }
+    .form-control::-moz-placeholder { color: #D69292; }
+    .form-control:-ms-input-placeholder { color: #D69292; }
+    input{
+      border-radius: 0px !important;
+      box-shadow: none !important;
+    }
+    input:focus{
+      border-bottom: 3px solid #ffffff !important;
+    }
+    select{
+      border-radius: 0px !important;
+      box-shadow: none !important;
+    }
+    select:focus{
+      border-bottom: 3px solid #ffffff !important;
+    }  
+    .help-block{
+      color:#FFFFFF;
+    }      
+  </style>
+</head>
+    <script src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+    <script src="app/products/product-controller.js"></script>
+
+<body ng-controller="ProductController">
+  <div class="container-fluid">
+    <div class="row">
+       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+        <form name="productForm" ng-submit="submitForm(productForm.$valid)" novalidate >
+            <p class="center title">Product Details</p>
+            <div class="form-group">
+              <label class="control-label requiredField" for="select">Device Type:<span class="asteriskField"> * </span></label>
+              <select class="select form-control" id="select" name="select" ng-model="newProduct.devicetype" required>
+                <option value="Select Device Type">
+                Select Device Type
+                </option>
+                <option value="Mobile">
+                Mobile
+                </option>
+                <option value="Tablet ( calling )">
+                Tablet ( calling )
+                </option>
+                <option value="Tablet ( non-calling )">
+                Tablet ( non-calling )
+                </option>
+                <option value="TV">
+                TV
+                </option>
+                <option value="Laptop">
+                Laptop
+                </option>
+                <option value="Camera ">
+                Camera
+                </option>
+                <option value="Printer ">
+                Printer
+                </option>
+                </select>
+                <span class="help-block" id="hint_select">
+               
+                </span>
+            </div><!--End of form group-->
+            <div class="form-group">
+              <label class="control-label requiredField" for="name">Device name:<span class="asteriskField"> * </span></label>      
+              <input class="form-control" id="name" name="devicename" ng-model="newProduct.devicename" placeholder="E.g. iPhone 5s" type="text"/ required>
+              <span class="help-block" id="hint_name">Select your device name</span> 
+            </div><!--End of form-group-->
+            
+            <div class="form-group">
+               <label class="control-label requiredField" for="select1">Device Value Range:<span class="asteriskField"> * </span>
+               </label>
+               <select class="select form-control" id="select1" name="devicevaluerange" ng-model="newProduct.devicevaluerange" required>
+               <option value="0 to 10,000">
+               0 to 10,000
+               </option>
+               <option value="10,001 to 15,000">
+               10,001 to 15,000
+               </option>
+               <option value="15,001 to 20,000">
+               15,001 to 20,000
+               </option>
+               <option value="20,001 to 25,000">
+               20,001 to 25,000
+               </option>
+               </select>
+               <span class="help-block" id="hint_select1">Select range of device value</span>
+            </div>
+            <div class="form-group" ng-if="newProduct.devicetype == 'Mobile' || newProduct.devicetype == 'Tablet ( calling )'">
+             <label class="control-label" for="name">IMEI Number:<span class="asteriskField"> * </span></label>      
+              <input class="form-control" id="imeinumber" name="imeinumber" ng-model="newProduct.imeinumber" ng-minlength="15" ng-maxlength="15" placeholder="Dial *#06#" type="Number">
+                 <p ng-show="productForm.imeinumber.$error.minlength" class="help-block">IMEI number is too short.</p>
+            <p ng-show="productForm.imeinumber.$error.maxlength" class="help-block">IMEI is too long.</p>
+            
+            </div>
+                  
+            <div class="form-group">
+               <label class="control-label requiredField">Upload Scanned Documents<span class="asteriskField"> * </span>
+               </label>
+           
+                <input class="form-control" type="file" ngf-select ng-model="file" name="file"    
+            accept="image/*" ngf-max-size="20MB" required>
+           
+            </div>
+            
+              
+        
+            <p class="center"><button class="btn btn-primary btn-lg raised" name="submit" type="submit" ng-disabled="!productForm.$valid" >Submit</p>
+         </form>
+       </div>
+    </div>
+  </div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+       <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $('.container-fluid').css('min-height',$(window).height());
+    </script>
+</body>
+</html>
